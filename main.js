@@ -7,7 +7,7 @@ const FormBtn = document.querySelector('form')
 FormBtn.addEventListener('submit' , async (e) => {
     e.preventDefault()
     let searchTern = InputSearch.value
-    const key = await fetch(`http://www.omdbapi.com/?apikey=a8c0f0f3&s=${searchTern}`)
+    const key = await fetch(`https://www.omdbapi.com/?apikey=a8c0f0f3&s=${searchTern}`)
     let answer = await key.json()
     const moviesAnswer = answer.Search
     CartForMovies.innerHTML = ""
