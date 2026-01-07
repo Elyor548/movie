@@ -1,25 +1,37 @@
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: #0d0d0d;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   color: #fff;
   padding-top: 20px;
 }
 
+
+
+
+
 #Movie {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 25px; 
+  gap: 25px;
   padding: 40px;
   max-width: 1400px;
-  margin: 0 auto; 
+  margin: 0 auto;
 }
+#loadMore {
+  display: block;
+  margin: 20px auto;
+}
+
 
 .movie-card {
   cursor: pointer;
@@ -33,9 +45,9 @@ body {
 
 .movie-card img {
   width: 100%;
-  aspect-ratio: 2 / 3; 
+  aspect-ratio: 2 / 3;
   object-fit: cover;
-  border-radius: 12px; 
+  border-radius: 12px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
 }
 
@@ -45,8 +57,11 @@ body {
   font-weight: 500;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis; 
+  text-overflow: ellipsis;
 }
+
+
+
 
 .movie-card p {
   color: #7a7a7a;
@@ -73,12 +88,11 @@ form {
 }
 
 #Input:focus {
-  border-color: #7c3aed; 
+  border-color: #7c3aed;
 }
 
-
 button {
-  background-color: #7c3aed; 
+  background-color: #7c3aed;
   color: white;
   border: none;
   padding: 12px 25px;
@@ -92,12 +106,12 @@ button {
 
 button:hover {
   background-color: #6d28d9;
-  transform: translateY(-2px); 
+  transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4);
 }
 
 button:active {
-  transform: translateY(0); 
+  transform: translateY(0);
 }
 
 .InputForResearch {
@@ -109,59 +123,71 @@ h1 {
   text-align: center;
   margin-top: 20px;
   cursor: pointer;
-
 }
 
 .title {
-  font-size: 48px; 
+  font-size: 48px;
   font-weight: 800;
   text-align: center;
   margin-bottom: 30px;
-  color: #ffffff; 
+  color: #ffffff;
   letter-spacing: -1px;
   cursor: pointer;
-
 }
 
 .accent {
   background: linear-gradient(135deg, #6d28d9 0%, #a855f7 100%);
-  
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  
-  color: #6d28d9; 
+  color: #6d28d9;
   cursor: pointer;
-
 }
 
-
-
-
-
 .modal {
-  display: none; 
+  display: none;
   position: fixed;
-  z-index: 1000; 
+  z-index: 1000;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.8); 
+  background-color: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(5px);
   align-items: center;
-  justify-content: center; 
+  justify-content: center;
 }
 
 .modal-content {
-  background-color: #1a1c22; 
+  background-color: #1a1c22;
   padding: 30px;
   border-radius: 20px;
   width: 90%;
-  max-width: 600px; 
+  max-width: 600px;
   position: relative;
   color: white;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-  animation: fadeIn 0.3s ease; 
+  animation: fadeIn 0.3s ease;
+}
+
+#loadMore {
+  display: block;
+   margin: 20px auto;
+}
+
+.imgposter {
+  opacity: 0; 
+  animation: fadeIn 0.8s ease-in-out forwards; 
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px); 
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .close-modal {
@@ -179,6 +205,168 @@ h1 {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 1024px) {
+  #Movie {
+    padding: 20px;
+    gap: 20px;
+  }
+
+
+  .imgposter {
+    opacity: 0; 
+    animation: fadeIn 0.8s ease-in-out forwards; 
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 1;
+      transform: translateY(10px); 
+    }
+    to {
+      opacity: 0;
+      transform: translateY(0);
+    }
+  }
+  #loadMore {
+    display: block;
+     margin: 20px auto;
+  }
+  
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 32px;
+    margin: 20px 0;
+  }
+
+  .InputForResearch {
+    width: 85%;
+    margin: 0 auto;
+  }
+
+  #Input {
+    width: 100%;
+  }
+
+  .modal-content {
+    padding: 30px;
+    width: 90%;
+  }
+
+  #loadMore {
+    display: block;
+     margin: 20px auto;
+  }
+  
+
+
+  .imgposter {
+    opacity: 0; 
+    animation: fadeIn 0.8s ease-in-out forwards; 
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px); 
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  #loadMore {
+    display: block;
+     margin: 20px auto;
+  }
+  
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 28px;
+    margin-top: 20px;
+  }
+
+  .InputForResearch {
+    flex-direction: column;
+    align-items: stretch;
+    background: transparent;
+    border: none;
+    padding: 0;
+    width: 90%;
+    gap: 10px;
+  }
+
+  #Input {
+    background: #1a1c22;
+    border: 1px solid #333;
+    border-radius: 15px;
+    padding: 12px 20px;
+    width: 100%;
+    text-align: center;
+  }
+
+  button {
+    width: 100%;
+    padding: 12px;
+    border-radius: 15px;
+  }
+
+  #Movie {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 15px;
+    padding: 15px;
+  }
+
+  .movie-card h3 {
+    font-size: 14px;
+  }
+
+  .modal-content {
+    padding: 25px 20px;
+    width: 95%;
+    max-height: 85vh;
+    overflow-y: auto;
+  }
+
+  .close-modal {
+    top: 10px;
+    right: 15px;
+    font-size: 35px;
+  }
+
+  .imgposter {
+    opacity: 0; 
+    animation: fadeIn 0.8s ease-in-out forwards; 
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px); 
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  #loadMore {
+    display: block;
+     margin: 20px auto;
+  }
+  
 }

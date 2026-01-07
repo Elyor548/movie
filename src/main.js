@@ -10,14 +10,33 @@ const modal = document.querySelector('#movieModal');
 const modalDetails = document.querySelector('#modalDetails');
 const closeBtn = document.querySelector('.close-modal');
 const logo = document.querySelector('#logo');
+const loadBtn = document.querySelector('#loadMore')
+
+
+let currentPage = 1; 
+let currentQuery = '';
+let currentUrl = `${BASE_URL}/trending/movie/week?api_key=${API_KEY}&language=ru-RU`
+
+
+loadBtn.addEventListener('click' , (c) => {
+  currentPage++
+  getMovies(currentUrl , currentPage)
+})
 
 logo.addEventListener('click', () => {
   InputSearch.value = "";
-  getMovies(`${BASE_URL}/trending/movie/week?api_key=${API_KEY}&language=ru-RU`);
+  currentPage = 1
+  currentUrl = `${BASE_URL}/trending/movie/week?api_key=${API_KEY}&language=ru-RU`;
+  getMovies(currentUrl, currentPage);
 });
 
-function showMovies(movies) {
-  CartForMovies.innerHTML = ""
+function showMovies(movies , page) {
+  if (currentPage === 1) {
+    CartForMovies.innerHTML = ""
+  } 
+
+
+
   movies.forEach(movie => {
     const { title, poster_path, release_date, overview } = movie;
     const moviePoster = poster_path ? IMG_URL + poster_path : 'https://myrusakov.ru/images/articles/html_placeholder_01.jpg';
@@ -26,7 +45,7 @@ function showMovies(movies) {
 
     CartForMovies.innerHTML += `
       <div class="movie-card" onclick="openModal('${safeTitle}', '${safeOverview}')">
-          <img src="${moviePoster}" alt="${title}">
+          <img  class="imgposter"    loading="lazy"  src="${moviePoster}" alt="${title}">
           <h3>${title}</h3>
           <p>${release_date ? release_date.split('-')[0] : 'Неизвестно'}</p>
       </div>
@@ -54,23 +73,25 @@ window.onclick = (event) => {
   }
 };
 
-async function getMovies(url) {
-  const response = await fetch(url)
+async function getMovies(url , page) {
+  const pageNumber = page || 1;
+  let finalUrl = `${url}&page=${pageNumber}`
+  const response = await fetch(finalUrl)
   const data = await response.json()
-  showMovies(data.results)
+  showMovies(data.results , page)
 }
 
-FormBtn.addEventListener('submit' , async (e) => {
-  e.preventDefault();
+FormBtn.addEventListener('submit', async (e) => {
+  e.preventDefault();  
+  currentPage = 1;
   const searchTerm = InputSearch.value.trim();
-  
   if (searchTerm) { 
-    const searchUrl = `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${searchTerm}&language=ru-RU`; 
-    getMovies(searchUrl);
+    currentUrl = `${BASE_URL}/search/movie?api_key=${API_KEY}&language=ru-RU&query=${searchTerm}`; 
+    getMovies(currentUrl, currentPage);
   } else {
-    const trendingUrl = `${BASE_URL}/trending/movie/week?api_key=${API_KEY}&language=ru-RU`;
-    getMovies(trendingUrl);
+    currentUrl = `${BASE_URL}/trending/movie/week?api_key=${API_KEY}&language=ru-RU`;
+    getMovies(currentUrl, currentPage);
   }
 });
 
-getMovies(`${BASE_URL}/trending/movie/week?api_key=${API_KEY}&language=ru-RU`);
+getMovies(`${BASE_URL}/trending/movie/week?api_key=${API_KEY}&language=ru-RU&page=${currentPage}`);
