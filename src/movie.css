@@ -1,0 +1,265 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background-color: #0d0d0d;
+    font-family: "Inter", sans-serif;
+    color: #fff;
+    padding-top: 20px;
+  }
+  
+  a { text-decoration: none; }
+  
+  .title {
+    font-size: 48px;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #ffffff;
+    letter-spacing: -1px;
+    cursor: pointer;
+  }
+  
+  #logo {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .section-title {
+    margin-top: 30px; text-align: center; color: #7c3aed; 
+    background: linear-gradient(135deg, #6d28d9 0%, #a855f7 100%);
+    -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #6d28d9;
+  font-size: 40px;
+  margin-bottom: 30px;
+}
+
+  .accent {
+    background: linear-gradient(135deg, #6d28d9 0%, #a855f7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #6d28d9;
+  }
+  
+  #movieSite {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+    color: #ffffff;
+    font-family: sans-serif;
+  }
+  
+  .movie-info-container {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 40px;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 30px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    margin-bottom: 40px;
+  }
+  
+  .detail-poster {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
+  }
+  
+.reklama {
+    color: #888; 
+    font-size: 1.3rem; 
+    margin-top: 20px;
+}
+
+
+.donthavetreler {
+    text-align: center; 
+    padding-top:100px;
+    font-size: 30px;
+    color: #7c3aed; 
+    background: linear-gradient(135deg, #6d28d9 0%, #a855f7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+  .detail-poster:hover {
+    transform: scale(1.02);
+  }
+  
+  .detail-text h1 {
+    font-size: 2.5rem;
+    margin-bottom: 5px;
+    color: #7c3aed; 
+    background: linear-gradient(135deg, #6d28d9 0%, #a855f7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .tagline {
+    font-style: italic;
+    color: #aaa;
+    display: block;
+    margin-bottom: 20px;
+  }
+  
+  .detail-text p {
+    margin: 12px 0;
+    line-height: 1.6;
+    font-size: 1.05rem;
+  }
+  
+  .genres {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 20px 0;
+  }
+  
+  .genres span {
+    background: #7c3aed;
+    color: #ffffff;
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+  
+  .player-section {
+    background: #111;
+    padding: 20px;
+    border-radius: 20px;
+    border: 1px solid #333;
+    margin-top: 20px;
+  }
+  
+  .tabs {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 25px;
+  }
+  
+  .tab-btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    background: #222;
+    cursor: pointer;
+    transition: 0.3s;
+    border: 1px solid #444;
+    margin-bottom: 10px;
+    font-weight: 600;
+    
+    color: #aaa; 
+  }
+  
+  .tab-btn:hover {
+    background: #333;
+    color: #fff;
+  }
+  
+  .tab-btn.active {
+    margin-bottom: 10px;
+    border-color: #7c3aed;
+    background: linear-gradient(135deg, #6d28d9 0%, #a855f7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-color: #1a1a1a; 
+    box-shadow: 0 0 15px rgba(109, 40, 217, 0.2);
+  }
+  
+  .video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; 
+    height: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #000;
+  }
+  
+  .video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+  
+  @media (max-width: 900px) {
+    .movie-info-container {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+    .detail-poster {
+      max-width: 300px;
+      margin: 0 auto;
+    }
+    .genres {
+      justify-content: center;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    #movieSite { padding: 10px; }
+    .detail-text h1 { font-size: 1.8rem; }
+    .tab-btn { padding: 10px 15px; font-size: 0.9rem; }
+    .reklama {
+        color: #888; 
+        font-size: 0.8rem; 
+        margin-top: 20px;
+    }
+    
+    
+    .donthavetreler {
+        display: flex;
+        justify-content: center;
+        font-size: 20px;
+        color: #7c3aed; 
+        background: linear-gradient(135deg, #6d28d9 0%, #a855f7 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .section-title {
+        margin-top: 30px; text-align: center; color: #7c3aed; 
+        background: linear-gradient(135deg, #6d28d9 0%, #a855f7 100%);
+        -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: #6d28d9;
+      font-size: 30px;
+      margin-bottom: 30px;
+    }
+    
+
+ 
+
+      @media (max-width: 350px) {
+        .tabs {
+          flex-direction: column;
+        }
+        .tab-btn {
+          width: auto;
+        }
+
+        .section-title {
+            margin-top: 30px; text-align: center; color: #7c3aed; 
+            background: linear-gradient(135deg, #6d28d9 0%, #a855f7 100%);
+            -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          color: #6d28d9;
+          font-size: 20px;
+          margin-bottom: 30px;
+        }
+        
+      
+      }
+  }
