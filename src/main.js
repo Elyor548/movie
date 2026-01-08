@@ -38,18 +38,16 @@ function showMovies(movies , page) {
 
 
   movies.forEach(movie => {
-    const { title, poster_path, release_date, overview } = movie;
+    const { title, poster_path, release_date, id } = movie;
     const moviePoster = poster_path ? IMG_URL + poster_path : 'https://myrusakov.ru/images/articles/html_placeholder_01.jpg';
-    const safeOverview = overview ? overview.replace(/'/g, " ") : "Описание отсутствует";
-    const safeTitle = title.replace(/'/g, " ");
-
-    CartForMovies.innerHTML += `
-      <div class="movie-card" onclick="openModal('${safeTitle}', '${safeOverview}')">
-          <img  class="imgposter"    loading="lazy"  src="${moviePoster}" alt="${title}">
-          <h3>${title}</h3>
-          <p>${release_date ? release_date.split('-')[0] : 'Неизвестно'}</p>
-      </div>
-    `;
+    const movieCard = `
+    <div class="movie-card" style="cursor: pointer;" onclick="window.location.href='movie.html?id=${movie.id}'">
+        <img class="imgposter" src="${moviePoster}" alt="${title}">
+        <h3>${title}</h3>
+        <p>${release_date ? release_date.split('-')[0] : 'Неизвестно'}</p>
+    </div> 
+  `;
+        CartForMovies.innerHTML += movieCard;
   });
 }
 
