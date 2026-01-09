@@ -6,6 +6,7 @@ const BASE_URL = "https://api.themoviedb.org/3";
 const IMG_URL = "https://image.tmdb.org/t/p/w500";
 
 const MovieSite = document.querySelector("#movieSite");
+const videoContainer = document.querySelector("#videoContainer");
 const urlParams = new URLSearchParams(window.location.search);
 const movieId = urlParams.get("id");
 const finalUrl = `${BASE_URL}/movie/${movieId}?api_key=${API_KEY}&language=ru-RU`;
@@ -57,7 +58,6 @@ async function loadMovie() {
         `;
     MovieSite.appendChild(playerSection);
 
-    const videoContainer = document.querySelector("#videoContainer");
 
     async function loadTrailer() {
       const videoRes = await fetch(
@@ -88,6 +88,65 @@ async function loadMovie() {
                 </div>
             `;
     }
+
+    let currentMovie = {
+      id: data.id,
+      title: data.title,
+      poster_path:  data.poster_path
+    }
+    
+        let history = localStorage.getItem('movieHistory')
+        let answerHistory;
+        
+
+
+    if (history === null) {
+      answerHistory = [currentMovie]
+    } else {
+      answerHistory = JSON.parse(history);
+      answerHistory = answerHistory.filter((item) => item.id !== currentMovie.id)
+      answerHistory.unshift(currentMovie);
+      answerHistory = answerHistory.slice(0,7)
+    }
+    localStorage.setItem('movieHistory', JSON.stringify(answerHistory));
+
+    const HitoryContainer = document.createElement("div")
+    HitoryContainer.className = "history-section"
+    MovieSite.appendChild(HitoryContainer)
+    const filtered = answerHistory.filter((item) => item.id !== data.id)
+    const historyHTML = filtered.map(item => {
+      return `<a href="movie.html?id=${item.id}" class="history-item">
+        <img src="${IMG_URL + item.poster_path}" alt="${item.title}">
+        <p>${item.title}</p>
+      </a>`;
+    }).join('')
+    
+        let content;
+        if (filtered.length > 0) {
+          content = historyHTML ;
+    
+        } else {
+         content =  `<p class="empty-history">Вы еще ничего не смотрели</p>`
+        } 
+    HitoryContainer.innerHTML = `<h3>Вы недавно смотрели</h3> 
+    <div class='history-list'>${content}</div>
+    <button id="clearHistory">Очистить корзину</button>`;
+
+    const btnBasket  = document.querySelector('#clearHistory')
+
+    btnBasket.onclick = function() {
+      HitoryContainer.classList.add('fade-out');
+      
+      localStorage.removeItem('movieHistory');
+      
+      setTimeout(() => {
+          HitoryContainer.remove();
+      }, 500);
+  };
+    
+    
+
+
     document.querySelector("#showTrailer").onclick = (e) => {
       toggleTabs(e);
       loadTrailer();

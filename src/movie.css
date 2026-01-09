@@ -24,6 +24,18 @@
     cursor: pointer;
   }
   
+
+  .history-section {
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.history-section.fade-out {
+    opacity: 0;
+    transform: translateY(20px); /* Блок немного "упадет" вниз при исчезновении */
+    pointer-events: none; /* Чтобы нельзя было нажать на кнопки во время анимации */
+}
+
+
   #logo {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -131,6 +143,80 @@
     font-size: 0.85rem;
     font-weight: 600;
   }
+
+
+
+.history-section {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #333; 
+}
+
+.history-section h3 {
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+  color: #fff;
+  padding-left: 10px;
+}
+
+.history-list {
+  display: flex;
+  gap: 15px; 
+  overflow-x: auto; 
+  padding-bottom: 15px; 
+  padding-left: 10px;
+}
+
+.history-item {
+  width: 130px;
+  flex-shrink: 0; 
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.history-item:hover {
+  transform: translateY(-5px); 
+}
+
+.history-item img {
+  width: 100%;      
+  height: 195px;     
+  object-fit: cover; 
+  border-radius: 10px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.5);
+  margin-bottom: 8px;
+}
+
+.history-item p {
+  color: #ccc;
+  font-size: 13px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+}
+
+.history-list::-webkit-scrollbar {
+  height: 8px;
+}
+
+.history-list::-webkit-scrollbar-track {
+  background: #111;
+  border-radius: 10px;
+}
+
+.history-list::-webkit-scrollbar-thumb {
+  background: #444; 
+  border-radius: 10px;
+}
+
+.history-list::-webkit-scrollbar-thumb:hover {
+  background: #7c3aed; 
+}
+
+
+  
   
   .player-section {
     background: #111;
@@ -175,6 +261,14 @@
     background-color: #1a1a1a; 
     box-shadow: 0 0 15px rgba(109, 40, 217, 0.2);
   }
+
+  .empty-history {
+    color: #888;
+    font-style: italic;
+    width: 100%; 
+    text-align: left;
+    padding: 10px;
+}
   
   .video-wrapper {
     position: relative;
