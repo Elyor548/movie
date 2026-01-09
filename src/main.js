@@ -12,6 +12,23 @@ const closeBtn = document.querySelector(".close-modal");
 const logo = document.querySelector("#logo");
 const loadBtn = document.querySelector("#loadMore");
 
+let timeout;
+InputSearch.addEventListener('input' , (t) => {
+  clearTimeout(timeout)
+  timeout = setTimeout( () => {
+    const searchTerm = InputSearch.value.trim(); 
+    if (searchTerm) {
+      currentUrl = `${BASE_URL}/search/movie?api_key=${API_KEY}&language=ru-RU&query=${searchTerm}`;
+      currentPage = 1;
+      getMovies(currentUrl, currentPage);
+    } else {
+      currentUrl = `${BASE_URL}/trending/movie/week?api_key=${API_KEY}&language=ru-RU`;
+      currentPage = 1;
+      getMovies(currentUrl, currentPage);
+    }
+  },500);
+
+}) 
 let currentPage = 1;
 let currentQuery = "";
 let currentUrl = `${BASE_URL}/trending/movie/week?api_key=${API_KEY}&language=ru-RU`;
